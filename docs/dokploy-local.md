@@ -53,7 +53,23 @@ Accéder à l'interface web de Dokploy via l'URL : [localhost:3000](http://local
 
 ## OrbStack et Traefik
 
-- [https://orb.local/](https://orb.local/)
-- [https://traefik.me/](https://traefik.me/)
+URL qui pourrait être utiles ?
+
+-   [https://orb.local/](https://orb.local/)
+-   [https://traefik.me/](https://traefik.me/)
 
 ## Déployer une application Next.js
+
+1. Créer un `Projet` puis un `Service` de type `Compose` > `Docker Compose`.
+2. Onglet `General` > section `Provider` puis source `Git`
+    - `Repository URL`: dépôt GitHub public
+    - `Branch`: par exemple `test` (par défaut `main`)
+    - `Compose Path`: `./compose.dokploy.yml`
+    - `Save`
+3. Onglet `Environment`
+    - Récupérer les variables d'environnement nécessaires dans le dépôt GitHub
+    - Ajouter les variables d'environnement nécessaires
+    - `Save`
+4. Onglet `General` > section `Deploy Settings` > `Deploy`
+
+Si le `compose.dokploy.yml` mappe le port externe comme ceci `ports: "3005:3000"`, alors l'application sera accessible dans la VM OrbStack via [http://localhost:3005](http://localhost:3005). OrbStack redirigera automatiquement le port vers le port équivalent sur la machine hôte MacOS sur [http://localhost:3005](http://localhost:3005).
